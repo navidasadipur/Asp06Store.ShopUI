@@ -1,4 +1,4 @@
-﻿namespace asp06Store.ShopUI.Models
+﻿namespace Asp06Store.ShopUI.Models
 {
     public class Product
     {

@@ -1,4 +1,4 @@
-﻿using asp06Store.ShopUI.Models;
+﻿using Asp06Store.ShopUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
