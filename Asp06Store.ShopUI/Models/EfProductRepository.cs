@@ -20,19 +20,14 @@
             };
 
             result.Data = _storeDbContext.Products
-                .Where(x => string.IsNullOrWhiteSpace(category) || x.Category == category)
+                .Where(x => string.IsNullOrWhiteSpace(category) || x.Category.Name == category)
                 .Skip((pageNumber -1) * pageSize)
                 .Take(pageSize)
                 .ToList();
             result.PageInfo.TotalCount = _storeDbContext.Products
-                .Where(x => string.IsNullOrWhiteSpace(category) || x.Category == category)
+                .Where(x => string.IsNullOrWhiteSpace(category) || x.Category.Name == category)
                 .Count();
             return result;
-        }
-
-        public List<string> GetAllCategories()
-        {
-            return _storeDbContext.Products.Select(x => x.Category).Distinct().ToList();
         }
 
         public Product GetById(int id)

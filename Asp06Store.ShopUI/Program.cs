@@ -8,6 +8,7 @@ var cnnString = builder.Configuration.GetConnectionString("StoreCnn");
 builder.Services.AddDbContext<StoreDbContext>(options => options.UseSqlServer(cnnString));
 
 builder.Services.AddScoped<IProductRepository, EfProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, EfCategoryRepository>();
 builder.Services.AddScoped<IOrderRepository, EfOrderRepository>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

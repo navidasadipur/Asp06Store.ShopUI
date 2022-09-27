@@ -22,6 +22,40 @@ namespace Asp06Store.ShopUI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Asp06Store.ShopUI.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Mobile"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Loptop"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Pc"
+                        });
+                });
+
             modelBuilder.Entity("Asp06Store.ShopUI.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -81,9 +115,8 @@ namespace Asp06Store.ShopUI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -98,13 +131,15 @@ namespace Asp06Store.ShopUI.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Category = "Mobile",
+                            CategoryId = 1,
                             Description = "sumsumng 1 best mobile for this price",
                             Name = "sumsumng 1",
                             Price = 30000000
@@ -112,7 +147,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 2,
-                            Category = "Mobile",
+                            CategoryId = 1,
                             Description = " sumsumng 2 best mobile for this price",
                             Name = "sumsumng 2",
                             Price = 30000000
@@ -120,7 +155,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 3,
-                            Category = "Mobile",
+                            CategoryId = 1,
                             Description = " IPhone 2 best mobile for this price",
                             Name = "IPhone 3",
                             Price = 30000000
@@ -128,7 +163,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 4,
-                            Category = "Mobile",
+                            CategoryId = 1,
                             Description = " IPhone 4 best mobile for this price",
                             Name = "IPhone 4",
                             Price = 30000000
@@ -136,7 +171,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 5,
-                            Category = "Mobile",
+                            CategoryId = 1,
                             Description = " IPhone 5 best mobile for this price",
                             Name = "Xiomi 5",
                             Price = 30000000
@@ -144,7 +179,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 6,
-                            Category = "Loptop",
+                            CategoryId = 2,
                             Description = "sumsumng 1 best mobile for this price",
                             Name = "asus 6",
                             Price = 30000000
@@ -152,7 +187,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 7,
-                            Category = "Loptop",
+                            CategoryId = 2,
                             Description = " sumsumng 2 best mobile for this price",
                             Name = "hp 7",
                             Price = 30000000
@@ -160,7 +195,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 8,
-                            Category = "Loptop",
+                            CategoryId = 2,
                             Description = " IPhone 2 best mobile for this price",
                             Name = "vivo 8",
                             Price = 30000000
@@ -168,7 +203,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 9,
-                            Category = "Loptop",
+                            CategoryId = 2,
                             Description = " IPhone 4 best mobile for this price",
                             Name = "asus 9",
                             Price = 30000000
@@ -176,7 +211,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 10,
-                            Category = "Loptop",
+                            CategoryId = 2,
                             Description = " IPhone 5 best mobile for this price",
                             Name = "Xiomi 10",
                             Price = 30000000
@@ -184,7 +219,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 11,
-                            Category = "Pc",
+                            CategoryId = 3,
                             Description = " sumsumng 2 best mobile for this price",
                             Name = "pc 11",
                             Price = 30000000
@@ -192,7 +227,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 12,
-                            Category = "Pc",
+                            CategoryId = 3,
                             Description = " IPhone 2 best mobile for this price",
                             Name = "vivo 12",
                             Price = 30000000
@@ -200,7 +235,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 13,
-                            Category = "Pc",
+                            CategoryId = 3,
                             Description = " IPhone 4 best mobile for this price",
                             Name = "asus 13",
                             Price = 30000000
@@ -208,7 +243,7 @@ namespace Asp06Store.ShopUI.Migrations
                         new
                         {
                             Id = 14,
-                            Category = "Pc",
+                            CategoryId = 3,
                             Description = " IPhone 4 best mobile for this price",
                             Name = "asus 14",
                             Price = 30000000
@@ -228,6 +263,17 @@ namespace Asp06Store.ShopUI.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Asp06Store.ShopUI.Models.Product", b =>
+                {
+                    b.HasOne("Asp06Store.ShopUI.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Asp06Store.ShopUI.Models.Order", b =>
