@@ -1,7 +1,7 @@
-﻿using asp06Store.ShopUI.Models;
+﻿using Asp06Store.ShopUI.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace asp06Store.ShopUI.Controllers
+namespace Asp06Store.ShopUI.Controllers
 {
     public class HomeController : Controller
     {
@@ -12,9 +12,14 @@ namespace asp06Store.ShopUI.Controllers
         {
             this._productRepository = productRepository;
         }
-        public IActionResult Index(int pageNumber = 1)
+        public IActionResult Index(int pageNumber = 1, string category = "")
         {
-            return View(_productRepository.GetAll(pageNumber, pageSize));
+            var viewModel = new ProductListViewModel
+            {
+                CurrentCategory = category,
+                Data = _productRepository.GetAll(pageNumber, pageSize, category)
+            };
+            return View(viewModel);
         }
     }
 }
