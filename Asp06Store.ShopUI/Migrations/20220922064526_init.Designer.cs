@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using asp06Store.ShopUI.Models;
+using Asp06Store.ShopUI.Models;
 
 #nullable disable
 
-namespace asp06Store.ShopUI.Migrations
+namespace Asp06Store.ShopUI.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
     [Migration("20220922064526_init")]
@@ -23,7 +23,7 @@ namespace asp06Store.ShopUI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("asp06Store.ShopUI.Models.Product", b =>
+            modelBuilder.Entity("Asp06Store.ShopUI.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace asp06Store.ShopUI.Models
+namespace Asp06Store.ShopUI.Models
 {
     public class StoreDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public StoreDbContext(DbContextOptions options) : base(options)
         {
         }

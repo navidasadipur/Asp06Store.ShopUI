@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace asp06Store.ShopUI.Migrations
+namespace Asp06Store.ShopUI.Migrations
 {
     public partial class init : Migration
     {
